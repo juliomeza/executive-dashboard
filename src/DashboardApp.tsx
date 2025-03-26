@@ -98,6 +98,11 @@ interface DashboardData {
     stockTurnRate: number;
     itemsLowStock: number;
     agingItemsCount: number;
+    valueByWarehouse: Array<{
+      id: string;
+      name: string;
+      value: number;
+    }>;
   };
   agingInventory: Array<{
     key: string;
@@ -115,6 +120,17 @@ interface DashboardData {
   }>;
   financialRatios: {
     laborCostPercentage: number;
+  };
+  warehouseCosts: {
+    monthly: Array<{
+      id: string;
+      name: string;
+      labor: number;
+      operations: number;
+      utilities: number;
+      maintenance: number;
+      total: number;
+    }>;
   };
 }
 
@@ -149,6 +165,12 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { Tabs, Statistic, Row, Col, Progress, Table, Tag } from 'antd';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 
+// --- Recharts Import for Charts ---
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+  LabelList
+} from 'recharts';
+
 const { TabPane } = Tabs;
 
 // Type aliases for easier reference
@@ -157,7 +179,7 @@ type RecentOrder = DashboardData['recentOrders'][0];
 type AgingInventoryItem = DashboardData['agingInventory'][0];
 
 // Access the data from the imported JSON file and assert the type
-const { kpis, warehouses, recentOrders, inventory, agingInventory, alerts, financialRatios } = dashboardData as unknown as DashboardData;
+const { kpis, warehouses, recentOrders, inventory, agingInventory, alerts, financialRatios, warehouseCosts } = dashboardData as unknown as DashboardData;
 
 // --- React Component ---
 const DashboardApp: React.FC = () => {
@@ -218,7 +240,7 @@ const DashboardApp: React.FC = () => {
         <Toolbar>
           <AssessmentIcon sx={{ mr: 2 }} />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            3PL Executive Dashboard
+            Reliable HealthCare Logistics
           </Typography>
           {/* Add User Profile/Logout here if needed */}
         </Toolbar>
@@ -401,12 +423,52 @@ const DashboardApp: React.FC = () => {
                        <Card sx={{ height: '100%' }}>
                           <CardHeader title="Cost per Warehouse (Monthly)" />
                           <CardContent>
-                               <Typography variant="body1" color="text.secondary" align="center" sx={{pt: 4, pb: 4}}>
-                                    [Bar Chart Placeholder: Cost by Warehouse]
-                                </Typography>
-                                <Typography variant="caption" display="block" gutterBottom>
-                                    Compares operational costs across different warehouse locations.
-                                </Typography>
+                              <div style={{ width: '100%', height: 300 }}>
+                                <ResponsiveContainer width="100%" height="100%">
+                                  <BarChart
+                                    data={warehouseCosts.monthly}
+                                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                                  >
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="name" />
+                                    <YAxis 
+                                      tickFormatter={(value) => `$${value/1000}k`}
+                                    />
+                                    <Tooltip 
+                                      formatter={(value) => [`$${value.toLocaleString()}`, '']}
+                                      labelFormatter={(label) => `Warehouse: ${label}`}
+                                    />
+                                    <Legend />
+                                    <Bar 
+                                      dataKey="labor" 
+                                      name="Labor" 
+                                      stackId="a" 
+                                      fill="#8884d8" 
+                                    />
+                                    <Bar 
+                                      dataKey="operations" 
+                                      name="Operations" 
+                                      stackId="a" 
+                                      fill="#82ca9d" 
+                                    />
+                                    <Bar 
+                                      dataKey="utilities" 
+                                      name="Utilities" 
+                                      stackId="a" 
+                                      fill="#ffc658" 
+                                    />
+                                    <Bar 
+                                      dataKey="maintenance" 
+                                      name="Maintenance" 
+                                      stackId="a" 
+                                      fill="#ff8042" 
+                                    />
+                                  </BarChart>
+                                </ResponsiveContainer>
+                              </div>
+                              <Typography variant="caption" display="block" gutterBottom>
+                                Compares operational costs across warehouses. West Coast has the highest total costs, primarily due to labor expenses.
+                              </Typography>
                           </CardContent>
                       </Card>
                     </Grid>
@@ -519,12 +581,45 @@ const DashboardApp: React.FC = () => {
                        <Card sx={{ height: '100%' }}>
                           <CardHeader title="Inventory Value by Warehouse" />
                           <CardContent>
-                               <Typography variant="body1" color="text.secondary" align="center" sx={{pt: 4, pb: 4}}>
-                                    [Bar Chart Placeholder: Inventory Value per Warehouse]
-                                </Typography>
-                                <Typography variant="caption" display="block" gutterBottom>
-                                   Distribution of total inventory value across locations.
-                                </Typography>
+                              <div style={{ width: '100%', height: 300 }}>
+                                <ResponsiveContainer width="100%" height="100%">
+                                  <BarChart
+                                    data={inventory.valueByWarehouse}
+                                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                                    layout="vertical"
+                                  >
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis 
+                                      type="number" 
+                                      tickFormatter={(value) => `$${value/1000000}M`}
+                                    />
+                                    <YAxis 
+                                      dataKey="name" 
+                                      type="category" 
+                                      width={100}
+                                    />
+                                    <Tooltip 
+                                      formatter={(value: number | string) => [`$${Number(value).toLocaleString()}`, 'Inventory Value']}
+                                      labelFormatter={(label) => `Warehouse: ${label}`}
+                                    />
+                                    <Legend />
+                                    <Bar 
+                                      dataKey="value" 
+                                      name="Inventory Value" 
+                                      fill="#3f8600" 
+                                    >
+                                      <LabelList 
+                                        dataKey="value" 
+                                        position="right" 
+                                        formatter={(value: number | string) => `$${(Number(value)/1000000).toFixed(1)}M`}
+                                      />
+                                    </Bar>
+                                  </BarChart>
+                                </ResponsiveContainer>
+                              </div>
+                              <Typography variant="caption" display="block" gutterBottom>
+                                West Coast Gateway holds the highest inventory value at $4.15M, representing 33% of total inventory across all warehouses.
+                              </Typography>
                           </CardContent>
                       </Card>
                     </Grid>

@@ -7,7 +7,7 @@
     "warehouseUtilization": 78
   },
   "warehouses": [
-    { "id": "WH001", "name": "Warehouse 10", "location": "Chicago, IL", "ordersToday": 155, "capacityUsedPercent": 85, "onTimeRate": 98.2, "issues": 1 },
+    { "id": "WH001", "name": "North Hub", "location": "Chicago, IL", "ordersToday": 155, "capacityUsedPercent": 85, "onTimeRate": 98.2, "issues": 1 },
     { "id": "WH002", "name": "South Central", "location": "Dallas, TX", "ordersToday": 210, "capacityUsedPercent": 72, "onTimeRate": 95.0, "issues": 5 },
     { "id": "WH003", "name": "West Coast Gateway", "location": "Los Angeles, CA", "ordersToday": 305, "capacityUsedPercent": 91, "onTimeRate": 97.1, "issues": 2 },
     { "id": "WH004", "name": "East Dock", "location": "Newark, NJ", "ordersToday": 188, "capacityUsedPercent": 68, "onTimeRate": 94.5, "issues": 8 }
@@ -23,7 +23,13 @@
     "totalValue": 12500000,
     "stockTurnRate": 4.2,
     "itemsLowStock": 45,
-    "agingItemsCount": 120
+    "agingItemsCount": 120,
+    "valueByWarehouse": [
+      { "id": "WH001", "name": "North Hub", "value": 3245000 },
+      { "id": "WH002", "name": "South Central", "value": 2870000 },
+      { "id": "WH003", "name": "West Coast Gateway", "value": 4150000 },
+      { "id": "WH004", "name": "East Dock", "value": 2235000 }
+    ]
   },
   "agingInventory": [
     { "key": "1", "sku": "SKU1001", "productName": "Product A", "daysInStock": 185, "quantity": 50, "warehouse": "WH002" },
@@ -38,5 +44,13 @@
   ],
   "financialRatios": {
     "laborCostPercentage": 28.5
+  },
+  "warehouseCosts": {
+    "monthly": [
+      { "id": "WH001", "name": "North Hub", "labor": 42500, "operations": 28750, "utilities": 12300, "maintenance": 8500, "total": 92050 },
+      { "id": "WH002", "name": "South Central", "labor": 38200, "operations": 26400, "utilities": 11200, "maintenance": 7800, "total": 83600 },
+      { "id": "WH003", "name": "West Coast Gateway", "labor": 68300, "operations": 42100, "utilities": 18500, "maintenance": 14200, "total": 143100 },
+      { "id": "WH004", "name": "East Dock", "labor": 41900, "operations": 27300, "utilities": 13600, "maintenance": 9100, "total": 91900 }
+    ]
   }
 }
