@@ -1,0 +1,359 @@
+{
+    "companyInfo": {
+      "name": "Global Fulfillment Solutions",
+      "id": "GFS001",
+      "primaryContact": "info@globalfulfillment.com"
+    },
+    "snapshotTimestamp": "2023-10-27T15:00:00Z",
+    "metadata": {
+      "refreshFrequency": "Daily",
+      "dataSources": ["InternalWMS_DB", "QuickBooksAPI", "CarrierPortal", "HRSystem"]
+    },
+    "warehouses": [
+      {
+        "id": "WH001",
+        "name": "North Hub",
+        "location": {
+          "address": "123 Logistics Way",
+          "city": "Chicago",
+          "state": "IL",
+          "zip": "60601",
+          "country": "USA"
+        },
+        "manager": {
+          "name": "Alice Smith",
+          "employeeId": "E7890"
+        },
+        "capacity": {
+          "totalSqFt": 150000,
+          "palletPositions": 10000
+        },
+        "currentStatus": {
+          "utilizationPercent": 85,
+          "operationalState": "Operational",
+          "temperatureControlled": false
+        },
+        "dailyPerformance": {
+          "ordersProcessed": 152,
+          "onTimeShipmentRate": 98.2,
+          "receivingVolume": 500,
+          "shippingVolume": 1200,
+          "openIssues": 1
+        }
+      },
+      {
+        "id": "WH002",
+        "name": "South Central",
+        "location": {
+          "address": "456 Distribution Dr",
+          "city": "Dallas",
+          "state": "TX",
+          "zip": "75201",
+          "country": "USA"
+        },
+        "manager": {
+          "name": "Bob Johnson",
+          "employeeId": "E1234"
+        },
+        "capacity": {
+          "totalSqFt": 200000,
+          "palletPositions": 15000
+        },
+        "currentStatus": {
+          "utilizationPercent": 72,
+          "operationalState": "Operational",
+          "temperatureControlled": true
+        },
+        "dailyPerformance": {
+          "ordersProcessed": 210,
+          "onTimeShipmentRate": 95.0,
+          "receivingVolume": 800,
+          "shippingVolume": 1800,
+          "openIssues": 5
+        }
+      },
+      {
+        "id": "WH003",
+        "name": "West Coast Gateway",
+        "location": {
+          "address": "789 Port Ave",
+          "city": "Los Angeles",
+          "state": "CA",
+          "zip": "90001",
+          "country": "USA"
+        },
+        "manager": {
+          "name": "Carol Williams",
+          "employeeId": "E5678"
+        },
+        "capacity": {
+          "totalSqFt": 250000,
+          "palletPositions": 20000
+        },
+        "currentStatus": {
+          "utilizationPercent": 91,
+          "operationalState": "Operational",
+          "temperatureControlled": false
+        },
+        "dailyPerformance": {
+          "ordersProcessed": 305,
+          "onTimeShipmentRate": 97.1,
+          "receivingVolume": 1000,
+          "shippingVolume": 2500,
+          "openIssues": 2
+        }
+      },
+      {
+        "id": "WH004",
+        "name": "East Dock",
+        "location": {
+          "address": "101 Terminal Rd",
+          "city": "Newark",
+          "state": "NJ",
+          "zip": "07101",
+          "country": "USA"
+        },
+        "manager": {
+          "name": "David Brown",
+          "employeeId": "E9012"
+        },
+        "capacity": {
+          "totalSqFt": 120000,
+          "palletPositions": 8000
+        },
+        "currentStatus": {
+          "utilizationPercent": 68,
+          "operationalState": "Warning: Staff Shortage",
+          "temperatureControlled": false
+        },
+        "dailyPerformance": {
+          "ordersProcessed": 188,
+          "onTimeShipmentRate": 94.5,
+          "receivingVolume": 400,
+          "shippingVolume": 1000,
+          "openIssues": 8
+        }
+      }
+    ],
+    "clients": [
+      {
+        "id": "CL001",
+        "name": "RetailCo",
+        "industry": "General Merchandise",
+        "accountManager": "Sarah Chen"
+      },
+      {
+        "id": "CL002",
+        "name": "eShop Now",
+        "industry": "E-commerce Electronics",
+        "accountManager": "Mike Davis"
+      },
+      {
+        "id": "CL003",
+        "name": "BigBox Inc.",
+        "industry": "Home Goods",
+        "accountManager": "Sarah Chen"
+      },
+      {
+        "id": "CL004",
+        "name": "Gadget World",
+        "industry": "Consumer Electronics",
+        "accountManager": "Mike Davis"
+      },
+      {
+         "id": "CL005",
+         "name": "Acme Corp",
+         "industry": "Industrial Supplies",
+         "accountManager": "Laura Green",
+         "status": "Onboarding"
+      }
+    ],
+    "products": [
+      {"sku": "SKU1001", "name": "Product A", "category": "Electronics", "unitCost": 15.50, "unitWeightKg": 0.5},
+      {"sku": "SKU2034", "name": "Product B", "category": "Apparel", "unitCost": 25.00, "unitWeightKg": 0.8},
+      {"sku": "SKU5877", "name": "Product C", "category": "Home Goods", "unitCost": 50.75, "unitWeightKg": 2.1},
+      {"sku": "SKU1009", "name": "Product D", "category": "Electronics", "unitCost": 120.00, "unitWeightKg": 1.5},
+      {"sku": "SKU7700", "name": "Product E", "category": "Books", "unitCost": 5.20, "unitWeightKg": 0.3}
+    ],
+    "inventorySnapshot": {
+      "totalValue": 12500000.00,
+      "totalUnits": 550000,
+      "distinctSKUs": 1500,
+      "averageAgeDays": 45,
+      "metrics": {
+        "stockTurnRateAnnualized": 4.2,
+        "itemsLowStockCount": 45,
+        "itemsOutOfStockCount": 12,
+        "agingItemsCount90days": 120
+      },
+      "details": [
+         {
+          "inventoryId": "INV-WH002-SKU1001",
+          "warehouseId": "WH002",
+          "sku": "SKU1001",
+          "productName": "Product A",
+          "quantityOnHand": 50,
+          "firstReceivedDate": "2023-04-15T00:00:00Z",
+          "daysInStock": 195
+        },
+        {
+          "inventoryId": "INV-WH001-SKU2034",
+          "warehouseId": "WH001",
+          "sku": "SKU2034",
+          "productName": "Product B",
+          "quantityOnHand": 200,
+          "firstReceivedDate": "2023-05-30T00:00:00Z",
+          "daysInStock": 150
+        },
+        {
+          "inventoryId": "INV-WH003-SKU5877",
+          "warehouseId": "WH003",
+          "sku": "SKU5877",
+          "productName": "Product C",
+          "quantityOnHand": 75,
+          "firstReceivedDate": "2023-06-28T00:00:00Z",
+          "daysInStock": 121
+        },
+        {
+          "inventoryId": "INV-WH002-SKU1009",
+          "warehouseId": "WH002",
+          "sku": "SKU1009",
+          "productName": "Product D",
+          "quantityOnHand": 110,
+          "firstReceivedDate": "2023-07-25T00:00:00Z",
+          "daysInStock": 95
+        }
+      ]
+    },
+    "orderSnapshot": {
+      "period": "Month-to-Date (October 2023)",
+      "totalOrders": 12580,
+      "totalRevenue": 157250.75,
+      "averageOrderValue": 12.50,
+      "metrics": {
+        "onTimeShipmentRate": 96.5,
+        "averageFulfilmentTimeHours": 8.5,
+        "orderAccuracyRate": 99.8
+      },
+      "recentOrders": [
+        {
+          "key": "1",
+          "orderId": "ORD-9875",
+          "clientId": "CL001",
+          "customerName": "RetailCo",
+          "status": "Shipped",
+          "orderDate": "2023-10-27T10:00:00Z",
+          "shipDate": "2023-10-27T10:15:00Z",
+          "warehouseId": "WH001",
+          "totalItems": 5,
+          "orderValue": 75.50
+        },
+        {
+          "key": "2",
+          "orderId": "ORD-9874",
+          "clientId": "CL002",
+          "customerName": "eShop Now",
+          "status": "Processing",
+          "orderDate": "2023-10-27T09:30:00Z",
+          "shipDate": null,
+          "warehouseId": "WH003",
+          "totalItems": 2,
+          "orderValue": 199.99
+        },
+        {
+          "key": "3",
+          "orderId": "ORD-9873",
+          "clientId": "CL003",
+          "customerName": "BigBox Inc.",
+          "status": "Delivered",
+          "orderDate": "2023-10-25T11:00:00Z",
+          "shipDate": "2023-10-25T16:00:00Z",
+          "deliveryDate": "2023-10-26T14:00:00Z",
+          "warehouseId": "WH002",
+          "totalItems": 15,
+          "orderValue": 350.00
+        },
+        {
+          "key": "4",
+          "orderId": "ORD-9872",
+          "clientId": "CL001",
+          "customerName": "RetailCo",
+          "status": "Pending",
+          "orderDate": "2023-10-27T11:00:00Z",
+          "shipDate": null,
+          "warehouseId": "WH001",
+          "totalItems": 8,
+          "orderValue": 121.80
+        },
+        {
+          "key": "5",
+          "orderId": "ORD-9871",
+          "clientId": "CL004",
+          "customerName": "Gadget World",
+          "status": "Cancelled",
+          "orderDate": "2023-10-25T16:00:00Z",
+          "shipDate": null,
+          "warehouseId": "WH004",
+          "totalItems": 1,
+          "orderValue": 49.95,
+          "cancelReason": "Customer Request"
+        }
+      ]
+    },
+    "financialSnapshot": {
+      "period": "Month-to-Date (October 2023)",
+      "currency": "USD",
+      "totalRevenue": 157250.75,
+      "costOfGoodsSold": 95000.00,
+      "operationalCosts": {
+        "labor": 28500.00,
+        "shipping": 32000.00,
+        "storage": 6500.00,
+        "packingMaterials": 2500.00,
+        "utilities": 1800.00,
+        "overhead": 4200.00,
+        "total": 75500.00
+      },
+      "averageCostPerOrder": 5.85,
+      "grossProfit": 61750.75,
+      "grossMarginPercent": 39.27
+    },
+    "systemAlerts": [
+      {
+        "alertId": "A001",
+        "severity": "Warning",
+        "type": "Performance",
+        "source": "WH002",
+        "title": "High pending orders",
+        "message": "Order processing queue length exceeds threshold. Investigate potential delays.",
+        "timestamp": "2023-10-27T12:05:00Z"
+      },
+      {
+        "alertId": "A002",
+        "severity": "Error",
+        "type": "Resource",
+        "source": "WH004",
+        "title": "Staffing level low",
+        "message": "Current staffing below minimum required for outbound operations. Potential impact on SLAs.",
+        "timestamp": "2023-10-27T08:30:00Z"
+      },
+      {
+        "alertId": "A003",
+        "severity": "Info",
+        "type": "Client",
+        "source": "System",
+        "title": "New Client Onboarded: Acme Corp",
+        "message": "Client CL005 (Acme Corp) successfully onboarded. Initial shipments expected next week.",
+        "timestamp": "2023-10-26T17:00:00Z"
+      },
+       {
+        "alertId": "A004",
+        "severity": "Warning",
+        "type": "Inventory",
+        "source": "System",
+        "title": "Low Stock Threshold Reached",
+        "message": "45 SKUs have fallen below their defined minimum stock levels.",
+        "timestamp": "2023-10-27T14:00:00Z"
+      }
+    ]
+  }
