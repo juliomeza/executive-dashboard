@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import dashboardData from './data/data.json';
+import logo from './assets/logo_rhcl.png';
 
 // Add global style to hide scrollbars but allow scrolling
 const hideScrollbarStyle = `
@@ -238,7 +239,7 @@ const DashboardApp: React.FC = () => {
       {/* --- Header using MUI AppBar --- */}
       <AppBar position="static">
         <Toolbar>
-          <AssessmentIcon sx={{ mr: 2 }} />
+        <img src={logo} alt="RHCL Logo" style={{ height: '32px', marginRight: '16px' }} />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Reliable HealthCare Logistics
           </Typography>
