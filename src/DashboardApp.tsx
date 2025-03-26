@@ -130,7 +130,7 @@ const DashboardApp: React.FC = () => {
     { title: 'Name', dataIndex: 'name', key: 'name', render: (text: string, record: WarehousePerformance) => <a onClick={() => alert(`Viewing details for ${record.name}`)}>{text}</a> },
     { title: 'Location', dataIndex: 'location', key: 'location' },
     { title: 'Orders Today', dataIndex: 'ordersToday', key: 'ordersToday', sorter: (a: WarehousePerformance, b: WarehousePerformance) => a.ordersToday - b.ordersToday },
-    { title: 'Capacity', dataIndex: 'capacityUsedPercent', key: 'capacityUsedPercent', render: (percent: number) => <Progress percent={percent} size="small" status={percent > 90 ? 'exception' : percent > 80 ? 'warning' : 'normal'} /> },
+    { title: 'Capacity', dataIndex: 'capacityUsedPercent', key: 'capacityUsedPercent', render: (percent: number) => <Progress percent={percent} size="small" status={percent > 90 ? 'exception' : percent > 80 ? 'active' : 'normal'} /> },
     { title: 'On-Time Rate', dataIndex: 'onTimeRate', key: 'onTimeRate', render: (rate: number) => <Tag color={rate >= 95 ? 'green' : rate >= 90 ? 'orange' : 'red'}>{rate.toFixed(1)}%</Tag> },
     { title: 'Open Issues', dataIndex: 'issues', key: 'issues', sorter: (a: WarehousePerformance, b: WarehousePerformance) => a.issues - b.issues },
   ];
@@ -254,7 +254,7 @@ const DashboardApp: React.FC = () => {
                                 percent={fakeData.kpis.warehouseUtilization}
                                 format={(percent) => `${percent}% Full`}
                                 strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }}
-                                status={fakeData.kpis.warehouseUtilization > 90 ? 'exception' : fakeData.kpis.warehouseUtilization > 80 ? 'warning' : 'normal'}
+                                status={fakeData.kpis.warehouseUtilization > 90 ? 'exception' : fakeData.kpis.warehouseUtilization > 80 ? 'active' : 'normal'}
                               />
                                <Typography variant="body2" color="text.secondary" sx={{mt: 2}}>Across all locations</Typography>
                           </CardContent>
