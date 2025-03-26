@@ -1,4 +1,56 @@
 import React from 'react';
+import dashboardData from './data/data.json';
+
+// Add TypeScript type assertion to ensure data is properly typed
+interface DashboardData {
+  kpis: {
+    totalOrders: number;
+    revenue: number;
+    onTimeShipmentRate: number;
+    avgCostPerOrder: number;
+    warehouseUtilization: number;
+  };
+  warehouses: Array<{
+    id: string;
+    name: string;
+    location: string;
+    ordersToday: number;
+    capacityUsedPercent: number;
+    onTimeRate: number;
+    issues: number;
+  }>;
+  recentOrders: Array<{
+    key: string;
+    orderId: string;
+    customer: string;
+    status: 'Pending' | 'Processing' | 'Shipped' | 'Delivered' | 'Cancelled';
+    date: string;
+    warehouse: string;
+  }>;
+  inventory: {
+    totalValue: number;
+    stockTurnRate: number;
+    itemsLowStock: number;
+    agingItemsCount: number;
+  };
+  agingInventory: Array<{
+    key: string;
+    sku: string;
+    productName: string;
+    daysInStock: number;
+    quantity: number;
+    warehouse: string;
+  }>;
+  alerts: Array<{
+    id: number;
+    type: 'warning' | 'error' | 'success';
+    message: string;
+    details: string;
+  }>;
+  financialRatios: {
+    laborCostPercentage: number;
+  };
+}
 
 // --- Material UI Imports ---
 import {
@@ -33,94 +85,13 @@ import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 
 const { TabPane } = Tabs;
 
-// --- Fake Data Interfaces ---
-interface KpiData {
-  totalOrders: number;
-  revenue: number;
-  onTimeShipmentRate: number;
-  avgCostPerOrder: number;
-  warehouseUtilization: number;
-}
+// Type aliases for easier reference
+type WarehousePerformance = DashboardData['warehouses'][0];
+type RecentOrder = DashboardData['recentOrders'][0];
+type AgingInventoryItem = DashboardData['agingInventory'][0];
 
-interface WarehousePerformance {
-  id: string;
-  name: string;
-  location: string;
-  ordersToday: number;
-  capacityUsedPercent: number;
-  onTimeRate: number;
-  issues: number;
-}
-
-interface RecentOrder {
-  key: string;
-  orderId: string;
-  customer: string;
-  status: 'Pending' | 'Processing' | 'Shipped' | 'Delivered' | 'Cancelled';
-  date: string;
-  warehouse: string;
-}
-
-interface InventoryStatus {
-  totalValue: number;
-  stockTurnRate: number;
-  itemsLowStock: number;
-  agingItemsCount: number;
-}
-
-interface AgingInventoryItem {
-  key: string;
-  sku: string;
-  productName: string;
-  daysInStock: number;
-  quantity: number;
-  warehouse: string;
-}
-
-// --- Fake Data Generation ---
-const generateFakeData = () => {
-  const kpis: KpiData = {
-    totalOrders: 12580,
-    revenue: 157250.75,
-    onTimeShipmentRate: 96.5,
-    avgCostPerOrder: 5.85,
-    warehouseUtilization: 78,
-  };
-
-  const warehouses: WarehousePerformance[] = [
-    { id: 'WH001', name: 'North Hub', location: 'Chicago, IL', ordersToday: 152, capacityUsedPercent: 85, onTimeRate: 98.2, issues: 1 },
-    { id: 'WH002', name: 'South Central', location: 'Dallas, TX', ordersToday: 210, capacityUsedPercent: 72, onTimeRate: 95.0, issues: 5 },
-    { id: 'WH003', name: 'West Coast Gateway', location: 'Los Angeles, CA', ordersToday: 305, capacityUsedPercent: 91, onTimeRate: 97.1, issues: 2 },
-    { id: 'WH004', name: 'East Dock', location: 'Newark, NJ', ordersToday: 188, capacityUsedPercent: 68, onTimeRate: 94.5, issues: 8 },
-  ];
-
-  const recentOrders: RecentOrder[] = [
-    { key: '1', orderId: 'ORD-9875', customer: 'RetailCo', status: 'Shipped', date: '2023-10-27 10:15', warehouse: 'WH001' },
-    { key: '2', orderId: 'ORD-9874', customer: 'eShop Now', status: 'Processing', date: '2023-10-27 09:30', warehouse: 'WH003' },
-    { key: '3', orderId: 'ORD-9873', customer: 'BigBox Inc.', status: 'Delivered', date: '2023-10-26 14:00', warehouse: 'WH002' },
-    { key: '4', orderId: 'ORD-9872', customer: 'RetailCo', status: 'Pending', date: '2023-10-27 11:00', warehouse: 'WH001' },
-    { key: '5', orderId: 'ORD-9871', customer: 'Gadget World', status: 'Cancelled', date: '2023-10-25 16:00', warehouse: 'WH004' },
-  ];
-
-  const inventory: InventoryStatus = {
-    totalValue: 12500000,
-    stockTurnRate: 4.2,
-    itemsLowStock: 45,
-    agingItemsCount: 120,
-  };
-
-  const agingInventory: AgingInventoryItem[] = [
-    { key: '1', sku: 'SKU1001', productName: 'Product A', daysInStock: 185, quantity: 50, warehouse: 'WH002' },
-    { key: '2', sku: 'SKU2034', productName: 'Product B', daysInStock: 150, quantity: 200, warehouse: 'WH001' },
-    { key: '3', sku: 'SKU5877', productName: 'Product C', daysInStock: 121, quantity: 75, warehouse: 'WH003' },
-    { key: '4', sku: 'SKU1009', productName: 'Product D', daysInStock: 95, quantity: 110, warehouse: 'WH002' },
-  ];
-
-
-  return { kpis, warehouses, recentOrders, inventory, agingInventory };
-};
-
-const fakeData = generateFakeData();
+// Access the data from the imported JSON file and assert the type
+const { kpis, warehouses, recentOrders, inventory, agingInventory, alerts, financialRatios } = dashboardData as unknown as DashboardData;
 
 // --- React Component ---
 const DashboardApp: React.FC = () => {
@@ -188,7 +159,7 @@ const DashboardApp: React.FC = () => {
                               <CardContent>
                                   <Statistic
                                       title="Total Orders (Month)"
-                                      value={fakeData.kpis.totalOrders}
+                                      value={kpis.totalOrders}
                                       precision={0}
                                       valueStyle={{ color: '#3f8600' }}
                                       prefix={<LocalShippingIcon />}
@@ -203,7 +174,7 @@ const DashboardApp: React.FC = () => {
                               <CardContent>
                                   <Statistic
                                       title="Revenue (Month)"
-                                      value={fakeData.kpis.revenue}
+                                      value={kpis.revenue}
                                       precision={2}
                                       valueStyle={{ color: '#3f8600' }}
                                       prefix="$"
@@ -217,10 +188,10 @@ const DashboardApp: React.FC = () => {
                               <CardContent>
                                   <Statistic
                                       title="On-Time Shipment Rate"
-                                      value={fakeData.kpis.onTimeShipmentRate}
+                                      value={kpis.onTimeShipmentRate}
                                       precision={1}
-                                      valueStyle={fakeData.kpis.onTimeShipmentRate >= 95 ? { color: '#3f8600' } : { color: '#cf1322' }}
-                                      prefix={fakeData.kpis.onTimeShipmentRate >= 95 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
+                                      valueStyle={kpis.onTimeShipmentRate >= 95 ? { color: '#3f8600' } : { color: '#cf1322' }}
+                                      prefix={kpis.onTimeShipmentRate >= 95 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
                                       suffix="%"
                                   />
                                   <Typography variant="caption" color="text.secondary">Target: 95%</Typography>
@@ -232,7 +203,7 @@ const DashboardApp: React.FC = () => {
                               <CardContent>
                                   <Statistic
                                       title="Avg. Cost Per Order"
-                                      value={fakeData.kpis.avgCostPerOrder}
+                                      value={kpis.avgCostPerOrder}
                                       precision={2}
                                       valueStyle={{ color: '#cf1322' }} // Lower is better, assume current is slightly high
                                       prefix="$"
@@ -251,10 +222,10 @@ const DashboardApp: React.FC = () => {
                           <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                               <Progress
                                 type="dashboard"
-                                percent={fakeData.kpis.warehouseUtilization}
+                                percent={kpis.warehouseUtilization}
                                 format={(percent) => `${percent}% Full`}
                                 strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }}
-                                status={fakeData.kpis.warehouseUtilization > 90 ? 'exception' : fakeData.kpis.warehouseUtilization > 80 ? 'active' : 'normal'}
+                                status={kpis.warehouseUtilization > 90 ? 'exception' : kpis.warehouseUtilization > 80 ? 'active' : 'normal'}
                               />
                                <Typography variant="body2" color="text.secondary" sx={{mt: 2}}>Across all locations</Typography>
                           </CardContent>
@@ -278,20 +249,19 @@ const DashboardApp: React.FC = () => {
                       <CardHeader title="Alerts & Notifications" />
                       <CardContent>
                         <List dense>
-                          <ListItem>
-                            <ListItemIcon sx={{ minWidth: 32 }}><WarningAmberIcon color="warning" /></ListItemIcon>
-                            <ListItemText primary="WH002: High pending orders" secondary="Investigate processing delay" />
-                          </ListItem>
-                          <Divider component="li" />
-                           <ListItem>
-                            <ListItemIcon sx={{ minWidth: 32 }}><ErrorOutlineIcon color="error" /></ListItemIcon>
-                            <ListItemText primary="WH004: Staffing level low" secondary="Potential impact on outbound" />
-                          </ListItem>
-                           <Divider component="li" />
-                           <ListItem>
-                            <ListItemIcon sx={{ minWidth: 32 }}><CheckCircleOutlineIcon color="success" /></ListItemIcon>
-                            <ListItemText primary="New Client Onboarded: Acme Corp" secondary="Initial shipments starting next week" />
-                          </ListItem>
+                          {alerts.map((alert, index) => (
+                            <React.Fragment key={alert.id}>
+                              <ListItem>
+                                <ListItemIcon sx={{ minWidth: 32 }}>
+                                  {alert.type === 'warning' && <WarningAmberIcon color="warning" />}
+                                  {alert.type === 'error' && <ErrorOutlineIcon color="error" />}
+                                  {alert.type === 'success' && <CheckCircleOutlineIcon color="success" />}
+                                </ListItemIcon>
+                                <ListItemText primary={alert.message} secondary={alert.details} />
+                              </ListItem>
+                              {index < alerts.length - 1 && <Divider component="li" />}
+                            </React.Fragment>
+                          ))}
                         </List>
                       </CardContent>
                     </Card>
@@ -308,7 +278,7 @@ const DashboardApp: React.FC = () => {
                             <CardContent>
                                 <Table
                                     columns={warehouseColumns}
-                                    dataSource={fakeData.warehouses}
+                                    dataSource={warehouses}
                                     rowKey="id"
                                     pagination={{ pageSize: 5 }}
                                     size="small"
@@ -378,7 +348,7 @@ const DashboardApp: React.FC = () => {
                             <CardContent>
                                 <Table
                                     columns={orderColumns}
-                                    dataSource={fakeData.recentOrders}
+                                    dataSource={recentOrders}
                                     rowKey="key"
                                     pagination={{ pageSize: 10 }}
                                      size="small"
@@ -395,28 +365,28 @@ const DashboardApp: React.FC = () => {
                    <Grid item xs={12} md={6} lg={3}>
                       <Card sx={{ height: '100%' }}>
                         <CardContent>
-                           <Statistic title="Total Inventory Value" value={fakeData.inventory.totalValue} precision={0} prefix="$" />
+                           <Statistic title="Total Inventory Value" value={inventory.totalValue} precision={0} prefix="$" />
                         </CardContent>
                       </Card>
                    </Grid>
                    <Grid item xs={12} md={6} lg={3}>
                       <Card sx={{ height: '100%' }}>
                         <CardContent>
-                            <Statistic title="Stock Turn Rate (Annualized)" value={fakeData.inventory.stockTurnRate} precision={1} suffix=" turns" />
+                            <Statistic title="Stock Turn Rate (Annualized)" value={inventory.stockTurnRate} precision={1} suffix=" turns" />
                         </CardContent>
                       </Card>
                    </Grid>
                     <Grid item xs={12} md={6} lg={3}>
                       <Card sx={{ height: '100%' }}>
                         <CardContent>
-                            <Statistic title="Items Low Stock" value={fakeData.inventory.itemsLowStock} valueStyle={{ color: '#cf1322' }} prefix={<WarningAmberIcon />} suffix=" SKUs"/>
+                            <Statistic title="Items Low Stock" value={inventory.itemsLowStock} valueStyle={{ color: '#cf1322' }} prefix={<WarningAmberIcon />} suffix=" SKUs"/>
                         </CardContent>
                       </Card>
                    </Grid>
                    <Grid item xs={12} md={6} lg={3}>
                       <Card sx={{ height: '100%' }}>
                         <CardContent>
-                           <Statistic title="Aging Items (>90 days)" value={fakeData.inventory.agingItemsCount} valueStyle={{ color: '#faad14' }} prefix={<WarningAmberIcon />} suffix=" SKUs"/>
+                           <Statistic title="Aging Items (>90 days)" value={inventory.agingItemsCount} valueStyle={{ color: '#faad14' }} prefix={<WarningAmberIcon />} suffix=" SKUs"/>
                         </CardContent>
                       </Card>
                    </Grid>
@@ -426,7 +396,7 @@ const DashboardApp: React.FC = () => {
                             <CardContent>
                                 <Table
                                     columns={agingInventoryColumns}
-                                    dataSource={fakeData.agingInventory}
+                                    dataSource={agingInventory}
                                     rowKey="key"
                                     pagination={{ pageSize: 5 }}
                                      size="small"
@@ -498,17 +468,17 @@ const DashboardApp: React.FC = () => {
                             <CardContent>
                                 <Row gutter={[16, 24]}>
                                      <Col span={12}>
-                                        <Statistic title="Avg. Revenue per Order" value={fakeData.kpis.revenue / fakeData.kpis.totalOrders} precision={2} prefix="$" />
+                                        <Statistic title="Avg. Revenue per Order" value={kpis.revenue / kpis.totalOrders} precision={2} prefix="$" />
                                      </Col>
                                      <Col span={12}>
-                                        <Statistic title="Avg. Cost per Order" value={fakeData.kpis.avgCostPerOrder} precision={2} prefix="$" />
+                                        <Statistic title="Avg. Cost per Order" value={kpis.avgCostPerOrder} precision={2} prefix="$" />
                                      </Col>
                                      <Col span={12}>
-                                        <Statistic title="Estimated Gross Margin" value={((fakeData.kpis.revenue / fakeData.kpis.totalOrders) - fakeData.kpis.avgCostPerOrder) / (fakeData.kpis.revenue / fakeData.kpis.totalOrders) * 100 } precision={1} suffix="%" />
+                                        <Statistic title="Estimated Gross Margin" value={((kpis.revenue / kpis.totalOrders) - kpis.avgCostPerOrder) / (kpis.revenue / kpis.totalOrders) * 100 } precision={1} suffix="%" />
                                      </Col>
                                       <Col span={12}>
                                         {/* Placeholder for another ratio */}
-                                         <Statistic title="Labor Cost % of Revenue" value={28.5} precision={1} suffix="%" />
+                                         <Statistic title="Labor Cost % of Revenue" value={financialRatios.laborCostPercentage} precision={1} suffix="%" />
                                      </Col>
                                 </Row>
                             </CardContent>

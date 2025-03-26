@@ -1,0 +1,42 @@
+{
+  "kpis": {
+    "totalOrders": 12581,
+    "revenue": 157250.75,
+    "onTimeShipmentRate": 96.5,
+    "avgCostPerOrder": 5.85,
+    "warehouseUtilization": 78
+  },
+  "warehouses": [
+    { "id": "WH001", "name": "Warehouse 10", "location": "Chicago, IL", "ordersToday": 155, "capacityUsedPercent": 85, "onTimeRate": 98.2, "issues": 1 },
+    { "id": "WH002", "name": "South Central", "location": "Dallas, TX", "ordersToday": 210, "capacityUsedPercent": 72, "onTimeRate": 95.0, "issues": 5 },
+    { "id": "WH003", "name": "West Coast Gateway", "location": "Los Angeles, CA", "ordersToday": 305, "capacityUsedPercent": 91, "onTimeRate": 97.1, "issues": 2 },
+    { "id": "WH004", "name": "East Dock", "location": "Newark, NJ", "ordersToday": 188, "capacityUsedPercent": 68, "onTimeRate": 94.5, "issues": 8 }
+  ],
+  "recentOrders": [
+    { "key": "1", "orderId": "ORD-9875", "customer": "RetailCo", "status": "Shipped", "date": "2023-10-27 10:15", "warehouse": "WH001" },
+    { "key": "2", "orderId": "ORD-9874", "customer": "eShop Now", "status": "Processing", "date": "2023-10-27 09:30", "warehouse": "WH003" },
+    { "key": "3", "orderId": "ORD-9873", "customer": "BigBox Inc.", "status": "Delivered", "date": "2023-10-26 14:00", "warehouse": "WH002" },
+    { "key": "4", "orderId": "ORD-9872", "customer": "RetailCo", "status": "Pending", "date": "2023-10-27 11:00", "warehouse": "WH001" },
+    { "key": "5", "orderId": "ORD-9871", "customer": "Gadget World", "status": "Cancelled", "date": "2023-10-25 16:00", "warehouse": "WH004" }
+  ],
+  "inventory": {
+    "totalValue": 12500000,
+    "stockTurnRate": 4.2,
+    "itemsLowStock": 45,
+    "agingItemsCount": 120
+  },
+  "agingInventory": [
+    { "key": "1", "sku": "SKU1001", "productName": "Product A", "daysInStock": 185, "quantity": 50, "warehouse": "WH002" },
+    { "key": "2", "sku": "SKU2034", "productName": "Product B", "daysInStock": 150, "quantity": 200, "warehouse": "WH001" },
+    { "key": "3", "sku": "SKU5877", "productName": "Product C", "daysInStock": 121, "quantity": 75, "warehouse": "WH003" },
+    { "key": "4", "sku": "SKU1009", "productName": "Product D", "daysInStock": 95, "quantity": 110, "warehouse": "WH002" }
+  ],
+  "alerts": [
+    {"id": 1, "type": "warning", "message": "WH002: High pending orders", "details": "Investigate processing delay"},
+    {"id": 2, "type": "error", "message": "WH004: Staffing level low", "details": "Potential impact on outbound"},
+    {"id": 3, "type": "success", "message": "New Client Onboarded: Acme Corp", "details": "Initial shipments starting next week"}
+  ],
+  "financialRatios": {
+    "laborCostPercentage": 28.5
+  }
+}
