@@ -1,5 +1,71 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import dashboardData from './data/data.json';
+
+// Add global style to hide scrollbars but allow scrolling
+const hideScrollbarStyle = `
+  /* Hide scrollbars on tab navigation */
+  .ant-tabs-nav-wrap, .ant-tabs-nav {
+    overflow-x: auto !important;
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE and Edge */
+    max-width: 100vw !important;
+  }
+  .ant-tabs-nav-wrap::-webkit-scrollbar, .ant-tabs-nav::-webkit-scrollbar {
+    display: none !important; /* Chrome, Safari, Opera */
+  }
+  
+  /* Adjust tabs for small screens */
+  @media (max-width: 576px) {
+    .ant-tabs-tab {
+      padding: 6px 8px !important;
+      margin-right: 2px !important;
+    }
+    .ant-tabs-tab-btn {
+      font-size: 12px !important;
+    }
+    
+    /* Make Ant Design components mobile-friendly */
+    .ant-col {
+      padding: 4px !important;
+    }
+    
+    .ant-card {
+      max-width: 100% !important;
+      margin: 0 !important;
+    }
+    
+    .ant-card-body {
+      padding: 12px !important;
+    }
+    
+    .ant-statistic-title {
+      font-size: 12px !important;
+    }
+    
+    .ant-statistic-content {
+      font-size: 18px !important;
+    }
+    
+    /* Force containers to fit */
+    .ant-tabs-content, .ant-tabs-tabpane {
+      width: 100% !important;
+      max-width: 100vw !important;
+      overflow-x: hidden !important;
+    }
+    
+    /* Ensure all tables and grids fit mobile screens */
+    .ant-table-wrapper {
+      width: 100% !important;
+      overflow-x: auto !important;
+    }
+  }
+  
+  /* Ensure nothing breaks out of its container */
+  * {
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+  }
+`;
 
 // Add TypeScript type assertion to ensure data is properly typed
 interface DashboardData {
@@ -95,6 +161,19 @@ const { kpis, warehouses, recentOrders, inventory, agingInventory, alerts, finan
 
 // --- React Component ---
 const DashboardApp: React.FC = () => {
+  // Add global styles when component mounts
+  useEffect(() => {
+    // Create style element
+    const style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = hideScrollbarStyle;
+    document.head.appendChild(style);
+    
+    // Cleanup on unmount
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
 
   // --- AntD Table Columns ---
   const warehouseColumns = [
@@ -146,16 +225,48 @@ const DashboardApp: React.FC = () => {
       </AppBar>
 
       {/* --- Main Content Area --- */}
-      <Box component="main" sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}>
-        <Container maxWidth="xl"> {/* Use MUI Container for max width and centering */}
+      <Box component="main" sx={{ 
+          flexGrow: 1, 
+          bgcolor: 'background.default', 
+          p: { xs: 1, sm: 2, md: 3 }, 
+          overflowX: 'hidden',
+          width: '100%',
+          maxWidth: '100vw'
+        }}>
+        <Container 
+          maxWidth="xl" 
+          sx={{ 
+            px: { xs: 0, sm: 1, md: 2 },
+            maxWidth: '100%',
+            overflowX: 'hidden'
+          }}>
           {/* --- Tabs using AntD --- */}
-          <Tabs defaultActiveKey="1" type="card">
+          <Tabs 
+            defaultActiveKey="1" 
+            type="card" 
+            size="small"
+            tabBarGutter={4}
+            className="dashboard-tabs"
+            style={{ 
+              width: '100%', 
+              maxWidth: '100%'
+            }}
+            tabBarStyle={{
+              marginBottom: '8px',
+              overflowX: 'auto',
+              overflowY: 'hidden',
+              whiteSpace: 'nowrap',
+              WebkitOverflowScrolling: 'touch',
+              maxWidth: '100%'
+            }}
+          >
             {/* --- Overview Tab --- */}
-            <TabPane tab={<span><AssessmentIcon style={{ verticalAlign: 'middle', marginRight: 8 }} /> Overview</span>} key="1">
-              <Paper elevation={2} sx={{ p: 2, mb: 3 }}> {/* MUI Paper for background */}
-                  <Row gutter={[16, 16]}> {/* AntD Row/Col for KPI grid */}
-                      <Col xs={24} sm={12} md={6}>
-                          <Card sx={{ height: '100%' }}>
+            <TabPane tab={<span><AssessmentIcon style={{ fontSize: '1rem', verticalAlign: 'middle', marginRight: 4 }} /> Overview</span>} key="1" 
+              style={{ width: '100%', maxWidth: '100%', overflowX: 'hidden' }}>
+              <Paper elevation={2} sx={{ p: 2, mb: 3, overflow: 'hidden', maxWidth: '100%', boxSizing: 'border-box' }}>
+                  <Row gutter={[16, 16]} style={{ margin: 0, maxWidth: '100%' }}>
+                      <Col xs={24} sm={12} md={6} style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}>
+                          <Card sx={{ height: '100%', width: '100%', boxSizing: 'border-box', maxWidth: '100%' }}>
                               <CardContent>
                                   <Statistic
                                       title="Total Orders (Month)"
@@ -169,8 +280,8 @@ const DashboardApp: React.FC = () => {
                               </CardContent>
                           </Card>
                       </Col>
-                      <Col xs={24} sm={12} md={6}>
-                          <Card sx={{ height: '100%' }}>
+                      <Col xs={24} sm={12} md={6} style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}>
+                          <Card sx={{ height: '100%', width: '100%', boxSizing: 'border-box', maxWidth: '100%' }}>
                               <CardContent>
                                   <Statistic
                                       title="Revenue (Month)"
@@ -183,8 +294,8 @@ const DashboardApp: React.FC = () => {
                               </CardContent>
                           </Card>
                       </Col>
-                      <Col xs={24} sm={12} md={6}>
-                          <Card sx={{ height: '100%' }}>
+                      <Col xs={24} sm={12} md={6} style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}>
+                          <Card sx={{ height: '100%', width: '100%', boxSizing: 'border-box', maxWidth: '100%' }}>
                               <CardContent>
                                   <Statistic
                                       title="On-Time Shipment Rate"
@@ -198,8 +309,8 @@ const DashboardApp: React.FC = () => {
                               </CardContent>
                           </Card>
                       </Col>
-                      <Col xs={24} sm={12} md={6}>
-                          <Card sx={{ height: '100%' }}>
+                      <Col xs={24} sm={12} md={6} style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}>
+                          <Card sx={{ height: '100%', width: '100%', boxSizing: 'border-box', maxWidth: '100%' }}>
                               <CardContent>
                                   <Statistic
                                       title="Avg. Cost Per Order"
@@ -270,7 +381,7 @@ const DashboardApp: React.FC = () => {
             </TabPane>
 
             {/* --- Warehouse Performance Tab --- */}
-            <TabPane tab={<span><WarehouseIcon style={{ verticalAlign: 'middle', marginRight: 8 }} /> Warehouses</span>} key="2">
+            <TabPane tab={<span><WarehouseIcon style={{ fontSize: '1rem', verticalAlign: 'middle', marginRight: 4 }} /> Warehouses</span>} key="2" style={{ overflowX: 'hidden', width: '100%' }}>
                <Grid container spacing={3}>
                     <Grid item xs={12}>
                         <Card>
@@ -314,7 +425,7 @@ const DashboardApp: React.FC = () => {
             </TabPane>
 
             {/* --- Order Fulfillment Tab --- */}
-            <TabPane tab={<span><LocalShippingIcon style={{ verticalAlign: 'middle', marginRight: 8 }} /> Order Fulfillment</span>} key="3">
+            <TabPane tab={<span><LocalShippingIcon style={{ fontSize: '1rem', verticalAlign: 'middle', marginRight: 4 }} /> Orders</span>} key="3" style={{ overflowX: 'hidden', width: '100%' }}>
                 <Grid container spacing={3}>
                      <Grid item xs={12} md={6} lg={4}>
                        <Card sx={{ height: '100%' }}>
@@ -360,7 +471,7 @@ const DashboardApp: React.FC = () => {
             </TabPane>
 
              {/* --- Inventory Tab --- */}
-            <TabPane tab={<span><InventoryIcon style={{ verticalAlign: 'middle', marginRight: 8 }} /> Inventory</span>} key="4">
+            <TabPane tab={<span><InventoryIcon style={{ fontSize: '1rem', verticalAlign: 'middle', marginRight: 4 }} /> Inventory</span>} key="4" style={{ overflowX: 'hidden', width: '100%' }}>
                <Grid container spacing={3}>
                    <Grid item xs={12} md={6} lg={3}>
                       <Card sx={{ height: '100%' }}>
@@ -421,7 +532,7 @@ const DashboardApp: React.FC = () => {
             </TabPane>
 
              {/* --- Financials Tab --- */}
-            <TabPane tab={<span><MonetizationOnIcon style={{ verticalAlign: 'middle', marginRight: 8 }} /> Financials</span>} key="5">
+            <TabPane tab={<span><MonetizationOnIcon style={{ fontSize: '1rem', verticalAlign: 'middle', marginRight: 4 }} /> Finance</span>} key="5" style={{ overflowX: 'hidden', width: '100%' }}>
                 <Grid container spacing={3}>
                      <Grid item xs={12} lg={6}>
                        <Card sx={{ height: '100%' }}>
