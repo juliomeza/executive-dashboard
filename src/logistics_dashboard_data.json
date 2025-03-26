@@ -1,0 +1,980 @@
+{
+    "companyName": "Reliable HealthCare Logistics",
+    "currentDate": "2023-10-28",
+    "kpis": {
+      "totalOrders": 15720,
+      "revenue": 12568450.75,
+      "onTimeShipmentRate": 96.7,
+      "avgCostPerOrder": 582.15,
+      "warehouseUtilization": 83,
+      "kpiTrends": {
+        "ordersGrowth": 7.3,
+        "revenueGrowth": 9.2,
+        "onTimeRateChange": 1.2,
+        "costPerOrderChange": 0.8
+      }
+    },
+    "warehouses": [
+      {
+        "id": "WH10",
+        "name": "Warehouse 10",
+        "location": "Boca Raton, FL",
+        "fullAddress": "951 Clint Moore Road, Suite A, Boca Raton, FL, 33487, US",
+        "ordersToday": 182,
+        "capacityUsedPercent": 85,
+        "onTimeRate": 98.2,
+        "issues": 2,
+        "specialFeatures": ["Controlled Room Temperature", "Cold Chain Capability", "DEA Vault"],
+        "certifications": ["ISO 9001:2015", "FDA Registered", "cGMP Compliant"],
+        "squareFootage": 45000,
+        "employeeCount": 47,
+        "establishedDate": "2015-06-12"
+      },
+      {
+        "id": "WH15",
+        "name": "Warehouse 15",
+        "location": "Sugar Land, TX",
+        "fullAddress": "1113 Gillingham Lane, Suite A, Sugar Land, TX, 77478, US",
+        "ordersToday": 210,
+        "capacityUsedPercent": 72,
+        "onTimeRate": 95.6,
+        "issues": 5,
+        "specialFeatures": ["Refrigerated Storage", "Hazardous Materials", "Secure Vault"],
+        "certifications": ["ISO 9001:2015", "FDA Registered", "VAWD Accredited"],
+        "squareFootage": 52000,
+        "employeeCount": 51,
+        "establishedDate": "2016-03-22"
+      },
+      {
+        "id": "WH18",
+        "name": "Warehouse 18",
+        "location": "Pompano Beach, FL",
+        "fullAddress": "751 NW 33rd St, Suite 190, Pompano Beach, FL, 33064, US",
+        "ordersToday": 154,
+        "capacityUsedPercent": 91,
+        "onTimeRate": 97.1,
+        "issues": 3,
+        "specialFeatures": ["Controlled Room Temperature", "Cold Chain Capability", "Clean Room (ISO 8)"],
+        "certifications": ["ISO 9001:2015", "FDA Registered", "cGMP Compliant"],
+        "squareFootage": 38000,
+        "employeeCount": 39,
+        "establishedDate": "2018-09-05"
+      },
+      {
+        "id": "WH20",
+        "name": "Warehouse 20",
+        "location": "Lockbourne, OH",
+        "fullAddress": "5653 Creekside Parkway Suite B, Lockbourne, OH, 43137, US",
+        "ordersToday": 178,
+        "capacityUsedPercent": 68,
+        "onTimeRate": 94.5,
+        "issues": 8,
+        "specialFeatures": ["Temperature Controlled", "High-Value Security", "Automated Picking"],
+        "certifications": ["ISO 9001:2015", "FDA Registered", "VAWD Accredited"],
+        "squareFootage": 62000,
+        "employeeCount": 56,
+        "establishedDate": "2019-01-18"
+      },
+      {
+        "id": "WH23",
+        "name": "Warehouse 23",
+        "location": "Dayton, NJ",
+        "fullAddress": "6 Wheeling Road, Suite A, Dayton, NJ, 08810, US",
+        "ordersToday": 163,
+        "capacityUsedPercent": 76,
+        "onTimeRate": 96.3,
+        "issues": 4,
+        "specialFeatures": ["Temperature Controlled", "Bio Hazard Containment", "Quality Control Lab"],
+        "certifications": ["ISO 9001:2015", "FDA Registered", "DEA Registered"],
+        "squareFootage": 47000,
+        "employeeCount": 42,
+        "establishedDate": "2020-05-30"
+      }
+    ],
+    "clients": [
+      {
+        "id": "CL001",
+        "name": "Eitan Medical Limited",
+        "contractStartDate": "2016-02-15",
+        "contractEndDate": "2025-02-14",
+        "products": ["Infusion Pumps", "Medical Devices", "Accessories"],
+        "warehouseAssignments": ["WH10", "WH23"],
+        "annualRevenue": 2456000,
+        "specialRequirements": ["Temperature Controlled", "Expedited Shipping", "Validated Systems"],
+        "orderVolume": {
+          "monthly": 120,
+          "annual": 1440
+        },
+        "contactPerson": {
+          "name": "Michael Steiner",
+          "position": "Supply Chain Director",
+          "email": "m.steiner@example.com",
+          "phone": "+1-555-123-4567"
+        }
+      },
+      {
+        "id": "CL002",
+        "name": "Methapharm, Inc.",
+        "contractStartDate": "2017-05-20",
+        "contractEndDate": "2024-05-19",
+        "products": ["Diagnostic Agents", "Pharmaceuticals"],
+        "warehouseAssignments": ["WH15", "WH20"],
+        "annualRevenue": 1867500,
+        "specialRequirements": ["Controlled Substances", "cGMP Storage", "Lot Control"],
+        "orderVolume": {
+          "monthly": 95,
+          "annual": 1140
+        },
+        "contactPerson": {
+          "name": "Jennifer Walters",
+          "position": "Operations Manager",
+          "email": "j.walters@example.com",
+          "phone": "+1-555-234-5678"
+        }
+      },
+      {
+        "id": "CL003",
+        "name": "Brookfield Pharmaceuticals, LLC",
+        "contractStartDate": "2018-08-10",
+        "contractEndDate": "2026-08-09",
+        "products": ["Generic Medications", "OTC Products"],
+        "warehouseAssignments": ["WH10", "WH18", "WH23"],
+        "annualRevenue": 2105000,
+        "specialRequirements": ["DEA Schedule II-V", "Serialization", "FDA Compliance"],
+        "orderVolume": {
+          "monthly": 110,
+          "annual": 1320
+        },
+        "contactPerson": {
+          "name": "David Thompson",
+          "position": "Logistics Director",
+          "email": "d.thompson@example.com",
+          "phone": "+1-555-345-6789"
+        }
+      },
+      {
+        "id": "CL004",
+        "name": "Alliance Pharma, Inc.",
+        "contractStartDate": "2019-03-05",
+        "contractEndDate": "2025-03-04",
+        "products": ["Branded Medications", "Sterile Injectables"],
+        "warehouseAssignments": ["WH15", "WH20"],
+        "annualRevenue": 1658000,
+        "specialRequirements": ["Cold Chain", "Validated Storage", "Specialized Shipping"],
+        "orderVolume": {
+          "monthly": 85,
+          "annual": 1020
+        },
+        "contactPerson": {
+          "name": "Sarah Johnson",
+          "position": "Supply Chain Manager",
+          "email": "s.johnson@example.com",
+          "phone": "+1-555-456-7890"
+        }
+      },
+      {
+        "id": "CL005",
+        "name": "Person & Covey, Inc.",
+        "contractStartDate": "2019-11-12",
+        "contractEndDate": "2024-11-11",
+        "products": ["Specialty Dermatologicals", "Medical Devices"],
+        "warehouseAssignments": ["WH10", "WH18"],
+        "annualRevenue": 1230000,
+        "specialRequirements": ["Room Temperature", "Batch Control", "JIT Inventory"],
+        "orderVolume": {
+          "monthly": 70,
+          "annual": 840
+        },
+        "contactPerson": {
+          "name": "Robert Garcia",
+          "position": "Distribution Manager",
+          "email": "r.garcia@example.com",
+          "phone": "+1-555-567-8901"
+        }
+      },
+      {
+        "id": "CL006",
+        "name": "Reliable 1 Laboratories LLC",
+        "contractStartDate": "2020-06-18",
+        "contractEndDate": "2025-06-17",
+        "products": ["Diagnostic Tests", "Lab Reagents"],
+        "warehouseAssignments": ["WH15", "WH23"],
+        "annualRevenue": 982500,
+        "specialRequirements": ["Refrigerated Storage", "Hazardous Materials", "Next-Day Shipping"],
+        "orderVolume": {
+          "monthly": 60,
+          "annual": 720
+        },
+        "contactPerson": {
+          "name": "Patricia Wilson",
+          "position": "Procurement Director",
+          "email": "p.wilson@example.com",
+          "phone": "+1-555-678-9012"
+        }
+      },
+      {
+        "id": "CL007",
+        "name": "Sartorius Bioprocess Solutions",
+        "contractStartDate": "2021-02-25",
+        "contractEndDate": "2026-02-24",
+        "products": ["Bioprocessing Equipment", "Lab Supplies", "Filtration Systems"],
+        "warehouseAssignments": ["WH20", "WH23"],
+        "annualRevenue": 1405000,
+        "specialRequirements": ["Clean Room Storage", "Specialized Handling", "Quality Assurance"],
+        "orderVolume": {
+          "monthly": 78,
+          "annual": 936
+        },
+        "contactPerson": {
+          "name": "Thomas Mitchell",
+          "position": "Supply Chain Director",
+          "email": "t.mitchell@example.com",
+          "phone": "+1-555-789-0123"
+        }
+      },
+      {
+        "id": "CL008",
+        "name": "Lonza Biologics, Inc.",
+        "contractStartDate": "2021-09-10",
+        "contractEndDate": "2026-09-09",
+        "products": ["Biopharmaceuticals", "Cell Culture Media", "Research Reagents"],
+        "warehouseAssignments": ["WH15", "WH20"],
+        "annualRevenue": 1750000,
+        "specialRequirements": ["Temperature Mapping", "Validated Systems", "Quarantine Capabilities"],
+        "orderVolume": {
+          "monthly": 90,
+          "annual": 1080
+        },
+        "contactPerson": {
+          "name": "Amanda Taylor",
+          "position": "Operations Director",
+          "email": "a.taylor@example.com",
+          "phone": "+1-555-890-1234"
+        }
+      }
+    ],
+    "recentOrders": [
+      {
+        "key": "1",
+        "orderId": "ORD-98750",
+        "customer": "Eitan Medical Limited",
+        "status": "Shipped",
+        "date": "2023-10-27 10:15",
+        "warehouse": "WH10",
+        "items": [
+          {
+            "sku": "EM-IP-2023",
+            "name": "Sapphire Infusion Pump",
+            "quantity": 25,
+            "value": 87500
+          },
+          {
+            "sku": "EM-AC-1001",
+            "name": "Administration Sets",
+            "quantity": 500,
+            "value": 12500
+          }
+        ],
+        "shippingMethod": "Next Day Air",
+        "trackingNumber": "1Z999AA10123456784",
+        "totalValue": 100000
+      },
+      {
+        "key": "2",
+        "orderId": "ORD-98749",
+        "customer": "Methapharm, Inc.",
+        "status": "Processing",
+        "date": "2023-10-27 09:30",
+        "warehouse": "WH15",
+        "items": [
+          {
+            "sku": "MP-DA-5001",
+            "name": "Provocholine Diagnostic Agent",
+            "quantity": 100,
+            "value": 35000
+          }
+        ],
+        "shippingMethod": "Ground",
+        "trackingNumber": null,
+        "totalValue": 35000
+      },
+      {
+        "key": "3",
+        "orderId": "ORD-98748",
+        "customer": "Brookfield Pharmaceuticals, LLC",
+        "status": "Delivered",
+        "date": "2023-10-26 14:00",
+        "warehouse": "WH18",
+        "items": [
+          {
+            "sku": "BP-GM-2001",
+            "name": "Generic Medication Lot #23785",
+            "quantity": 2000,
+            "value": 78000
+          },
+          {
+            "sku": "BP-OTC-3005",
+            "name": "OTC Pain Relief Tablets",
+            "quantity": 5000,
+            "value": 42500
+          }
+        ],
+        "shippingMethod": "Ground",
+        "trackingNumber": "1Z999AA10123456783",
+        "totalValue": 120500
+      },
+      {
+        "key": "4",
+        "orderId": "ORD-98747",
+        "customer": "Alliance Pharma, Inc.",
+        "status": "Pending",
+        "date": "2023-10-27 11:00",
+        "warehouse": "WH20",
+        "items": [
+          {
+            "sku": "AP-SI-4002",
+            "name": "Sterile Injectable Medication",
+            "quantity": 150,
+            "value": 45000
+          }
+        ],
+        "shippingMethod": "2-Day Air",
+        "trackingNumber": null,
+        "totalValue": 45000
+      },
+      {
+        "key": "5",
+        "orderId": "ORD-98746",
+        "customer": "Person & Covey, Inc.",
+        "status": "Cancelled",
+        "date": "2023-10-25 16:00",
+        "warehouse": "WH10",
+        "items": [
+          {
+            "sku": "PC-SD-6001",
+            "name": "Specialty Dermatological Cream",
+            "quantity": 1000,
+            "value": 32500
+          }
+        ],
+        "shippingMethod": "Ground",
+        "trackingNumber": null,
+        "totalValue": 32500
+      },
+      {
+        "key": "6",
+        "orderId": "ORD-98745",
+        "customer": "Reliable 1 Laboratories LLC",
+        "status": "Shipped",
+        "date": "2023-10-26 15:45",
+        "warehouse": "WH15",
+        "items": [
+          {
+            "sku": "R1L-DT-7001",
+            "name": "Diagnostic Test Kits",
+            "quantity": 300,
+            "value": 15000
+          },
+          {
+            "sku": "R1L-LR-7002",
+            "name": "Lab Reagents",
+            "quantity": 50,
+            "value": 8750
+          }
+        ],
+        "shippingMethod": "Overnight",
+        "trackingNumber": "1Z999AA10123456782",
+        "totalValue": 23750
+      },
+      {
+        "key": "7",
+        "orderId": "ORD-98744",
+        "customer": "Sartorius Bioprocess Solutions",
+        "status": "Processing",
+        "date": "2023-10-27 08:15",
+        "warehouse": "WH23",
+        "items": [
+          {
+            "sku": "SBP-BE-8001",
+            "name": "Bioprocessing Filter Systems",
+            "quantity": 10,
+            "value": 65000
+          }
+        ],
+        "shippingMethod": "Ground",
+        "trackingNumber": null,
+        "totalValue": 65000
+      },
+      {
+        "key": "8",
+        "orderId": "ORD-98743",
+        "customer": "Lonza Biologics, Inc.",
+        "status": "Shipped",
+        "date": "2023-10-26 13:30",
+        "warehouse": "WH20",
+        "items": [
+          {
+            "sku": "LB-BP-9001",
+            "name": "Biopharmaceutical Compounds",
+            "quantity": 15,
+            "value": 120000
+          },
+          {
+            "sku": "LB-CM-9002",
+            "name": "Cell Culture Media",
+            "quantity": 100,
+            "value": 42500
+          }
+        ],
+        "shippingMethod": "Next Day Air",
+        "trackingNumber": "1Z999AA10123456781",
+        "totalValue": 162500
+      },
+      {
+        "key": "9",
+        "orderId": "ORD-98742",
+        "customer": "Eitan Medical Limited",
+        "status": "Delivered",
+        "date": "2023-10-25 11:45",
+        "warehouse": "WH23",
+        "items": [
+          {
+            "sku": "EM-AC-1002",
+            "name": "Infusion Sets",
+            "quantity": 1000,
+            "value": 25000
+          }
+        ],
+        "shippingMethod": "Ground",
+        "trackingNumber": "1Z999AA10123456780",
+        "totalValue": 25000
+      },
+      {
+        "key": "10",
+        "orderId": "ORD-98741",
+        "customer": "Brookfield Pharmaceuticals, LLC",
+        "status": "Processing",
+        "date": "2023-10-27 09:45",
+        "warehouse": "WH10",
+        "items": [
+          {
+            "sku": "BP-GM-2002",
+            "name": "Generic Medication Lot #23786",
+            "quantity": 1500,
+            "value": 58500
+          }
+        ],
+        "shippingMethod": "2-Day Air",
+        "trackingNumber": null,
+        "totalValue": 58500
+      }
+    ],
+    "inventoryStatus": {
+      "totalValue": 18750000,
+      "stockTurnRate": 4.8,
+      "itemsLowStock": 32,
+      "agingItemsCount": 85,
+      "byWarehouse": [
+        {
+          "warehouse": "WH10",
+          "value": 4125000,
+          "skuCount": 215,
+          "lowStockCount": 8,
+          "agingItemsCount": 18
+        },
+        {
+          "warehouse": "WH15",
+          "value": 3850000,
+          "skuCount": 198,
+          "lowStockCount": 7,
+          "agingItemsCount": 21
+        },
+        {
+          "warehouse": "WH18",
+          "value": 2950000,
+          "skuCount": 175,
+          "lowStockCount": 5,
+          "agingItemsCount": 15
+        },
+        {
+          "warehouse": "WH20",
+          "value": 4750000,
+          "skuCount": 225,
+          "lowStockCount": 6,
+          "agingItemsCount": 19
+        },
+        {
+          "warehouse": "WH23",
+          "value": 3075000,
+          "skuCount": 187,
+          "lowStockCount": 6,
+          "agingItemsCount": 12
+        }
+      ]
+    },
+    "agingInventory": [
+      {
+        "key": "1",
+        "sku": "EM-IP-2021",
+        "productName": "Legacy Infusion Pump Model",
+        "daysInStock": 295,
+        "quantity": 38,
+        "warehouse": "WH10",
+        "value": 114000,
+        "client": "Eitan Medical Limited"
+      },
+      {
+        "key": "2",
+        "sku": "MP-DA-4001",
+        "productName": "Discontinued Diagnostic Agent",
+        "daysInStock": 250,
+        "quantity": 175,
+        "warehouse": "WH15",
+        "value": 52500,
+        "client": "Methapharm, Inc."
+      },
+      {
+        "key": "3",
+        "sku": "BP-OTC-3001",
+        "productName": "OTC Cold Medicine (Near Expiry)",
+        "daysInStock": 215,
+        "quantity": 850,
+        "warehouse": "WH18",
+        "value": 8500,
+        "client": "Brookfield Pharmaceuticals, LLC"
+      },
+      {
+        "key": "4",
+        "sku": "AP-SI-4001",
+        "productName": "Recalled Injectable Lot",
+        "daysInStock": 185,
+        "quantity": 125,
+        "warehouse": "WH20",
+        "value": 37500,
+        "client": "Alliance Pharma, Inc."
+      },
+      {
+        "key": "5",
+        "sku": "PC-SD-6002",
+        "productName": "Dermatological Sample Kits",
+        "daysInStock": 175,
+        "quantity": 200,
+        "warehouse": "WH10",
+        "value": 0,
+        "client": "Person & Covey, Inc."
+      },
+      {
+        "key": "6",
+        "sku": "R1L-DT-7003",
+        "productName": "Obsolete Test Kits",
+        "daysInStock": 168,
+        "quantity": 245,
+        "warehouse": "WH23",
+        "value": 12250,
+        "client": "Reliable 1 Laboratories LLC"
+      },
+      {
+        "key": "7",
+        "sku": "SBP-BE-8003",
+        "productName": "Previous Generation Equipment",
+        "daysInStock": 155,
+        "quantity": 12,
+        "warehouse": "WH20",
+        "value": 60000,
+        "client": "Sartorius Bioprocess Solutions"
+      },
+      {
+        "key": "8",
+        "sku": "LB-CM-9003",
+        "productName": "Specialized Media (Temperature Excursion)",
+        "daysInStock": 115,
+        "quantity": 85,
+        "warehouse": "WH15",
+        "value": 0,
+        "client": "Lonza Biologics, Inc."
+      }
+    ],
+    "lowStockItems": [
+      {
+        "key": "1",
+        "sku": "EM-IP-2023",
+        "productName": "Sapphire Infusion Pump",
+        "currentStock": 15,
+        "reorderPoint": 50,
+        "warehouse": "WH10",
+        "client": "Eitan Medical Limited",
+        "onOrder": true,
+        "estimatedArrival": "2023-11-10"
+      },
+      {
+        "key": "2",
+        "sku": "MP-DA-5001",
+        "productName": "Provocholine Diagnostic Agent",
+        "currentStock": 25,
+        "reorderPoint": 75,
+        "warehouse": "WH15",
+        "client": "Methapharm, Inc.",
+        "onOrder": true,
+        "estimatedArrival": "2023-11-05"
+      },
+      {
+        "key": "3",
+        "sku": "BP-GM-2001",
+        "productName": "Generic Medication Lot #23785",
+        "currentStock": 350,
+        "reorderPoint": 500,
+        "warehouse": "WH18",
+        "client": "Brookfield Pharmaceuticals, LLC",
+        "onOrder": false,
+        "estimatedArrival": null
+      },
+      {
+        "key": "4",
+        "sku": "AP-SI-4002",
+        "productName": "Sterile Injectable Medication",
+        "currentStock": 50,
+        "reorderPoint": 100,
+        "warehouse": "WH20",
+        "client": "Alliance Pharma, Inc.",
+        "onOrder": true,
+        "estimatedArrival": "2023-11-15"
+      },
+      {
+        "key": "5",
+        "sku": "R1L-LR-7002",
+        "productName": "Lab Reagents",
+        "currentStock": 10,
+        "reorderPoint": 30,
+        "warehouse": "WH23",
+        "client": "Reliable 1 Laboratories LLC",
+        "onOrder": true,
+        "estimatedArrival": "2023-11-03"
+      }
+    ],
+    "financials": {
+      "monthly": [
+        {
+          "month": "November 2022",
+          "revenue": 950750.25,
+          "cost": 807250.50,
+          "profit": 143499.75
+        },
+        {
+          "month": "December 2022",
+          "revenue": 975250.75,
+          "cost": 825375.50,
+          "profit": 149875.25
+        },
+        {
+          "month": "January 2023",
+          "revenue": 925500.50,
+          "cost": 785250.25,
+          "profit": 140250.25
+        },
+        {
+          "month": "February 2023",
+          "revenue": 935750.25,
+          "cost": 795500.75,
+          "profit": 140249.50
+        },
+        {
+          "month": "March 2023",
+          "revenue": 980250.75,
+          "cost": 830500.50,
+          "profit": 149750.25
+        },
+        {
+          "month": "April 2023",
+          "revenue": 1000500.50,
+          "cost": 845375.25,
+          "profit": 155125.25
+        },
+        {
+          "month": "May 2023",
+          "revenue": 1025750.75,
+          "cost": 860500.50,
+          "profit": 165250.25
+        },
+        {
+          "month": "June 2023",
+          "revenue": 1050250.25,
+          "cost": 875750.75,
+          "profit": 174499.50
+        },
+        {
+          "month": "July 2023",
+          "revenue": 1075500.50,
+          "cost": 890250.25,
+          "profit": 185250.25
+        },
+        {
+          "month": "August 2023",
+          "revenue": 1100750.75,
+          "cost": 905375.50,
+          "profit": 195375.25
+        },
+        {
+          "month": "September 2023",
+          "revenue": 1125250.25,
+          "cost": 925500.75,
+          "profit": 199749.50
+        },
+        {
+          "month": "October 2023",
+          "revenue": 1150500.50,
+          "cost": 942750.25,
+          "profit": 207750.25
+        }
+      ],
+      "warehouseFinancials": [
+        {
+          "warehouse": "WH10",
+          "revenue": 3250750.25,
+          "cost": 2675500.50,
+          "profit": 575249.75,
+          "costBreakdown": {
+            "labor": 1337750.25,
+            "shipping": 802650.15,
+            "storage": 401325.08,
+            "utilities": 80265.02,
+            "overhead": 53510.00
+          }
+        },
+        {
+          "warehouse": "WH15",
+          "revenue": 2850250.75,
+          "cost": 2365750.25,
+          "profit": 484500.50,
+          "costBreakdown": {
+            "labor": 1182875.13,
+            "shipping": 709725.08,
+            "storage": 354862.54,
+            "utilities": 70972.50,
+            "overhead": 47315.00
+          }
+        },
+        {
+          "warehouse": "WH18",
+          "revenue": 1950500.50,
+          "cost": 1650250.25,
+          "profit": 300250.25,
+          "costBreakdown": {
+            "labor": 825125.13,
+            "shipping": 495075.08,
+            "storage": 247537.54,
+            "utilities": 49507.50,
+            "overhead": 33005.00
+          }
+        },
+        {
+          "warehouse": "WH20",
+          "revenue": 2625750.75,
+          "cost": 2185750.50,
+          "profit": 440000.25,
+          "costBreakdown": {
+            "labor": 1092875.25,
+            "shipping": 655725.15,
+            "storage": 327862.58,
+            "utilities": 65572.52,
+            "overhead": 43715.00
+          }
+        },
+        {
+          "warehouse": "WH23",
+          "revenue": 1891250.25,
+          "cost": 1575500.75,
+          "profit": 315749.50,
+          "costBreakdown": {
+            "labor": 787750.38,
+            "shipping": 472650.23,
+            "storage": 236325.10,
+            "utilities": 47265.04,
+            "overhead": 31510.00
+          }
+        }
+      ],
+      "clientFinancials": [
+        {
+          "client": "Eitan Medical Limited",
+          "totalRevenue": 2456000,
+          "costToServe": 2014000,
+          "profit": 442000,
+          "marginPercent": 18.0
+        },
+        {
+          "client": "Methapharm, Inc.",
+          "totalRevenue": 1867500,
+          "costToServe": 1550000,
+          "profit": 317500,
+          "marginPercent": 17.0
+        },
+        {
+          "client": "Brookfield Pharmaceuticals, LLC",
+          "totalRevenue": 2105000,
+          "costToServe": 1726100,
+          "profit": 378900,
+          "marginPercent": 18.0
+        },
+        {
+          "client": "Alliance Pharma, Inc.",
+          "totalRevenue": 1658000,
+          "costToServe": 1392720,
+          "profit": 265280,
+          "marginPercent": 16.0
+        },
+        {
+          "client": "Person & Covey, Inc.",
+          "totalRevenue": 1230000,
+          "costToServe": 1033200,
+          "profit": 196800,
+          "marginPercent": 16.0
+        },
+        {
+          "client": "Reliable 1 Laboratories LLC",
+          "totalRevenue": 982500,
+          "costToServe": 825300,
+          "profit": 157200,
+          "marginPercent": 16.0
+        },
+        {
+          "client": "Sartorius Bioprocess Solutions",
+          "totalRevenue": 1405000,
+          "costToServe": 1138050,
+          "profit": 266950,
+          "marginPercent": 19.0
+        },
+        {
+          "client": "Lonza Biologics, Inc.",
+          "totalRevenue": 1750000,
+          "costToServe": 1435000,
+          "profit": 315000,
+          "marginPercent": 18.0
+        }
+      ],
+      "operationalCosts": {
+        "labor": 5226375.14,
+        "shipping": 3135825.69,
+        "storage": 1567912.84,
+        "utilities": 313582.58,
+        "overhead": 209055.00
+      }
+    },
+    "orderMetrics": {
+      "daily": [
+        {"date": "2023-10-01", "orders": 48, "onTimeRate": 97.9},
+        {"date": "2023-10-02", "orders": 52, "onTimeRate": 98.1},
+        {"date": "2023-10-03", "orders": 49, "onTimeRate": 97.8},
+        {"date": "2023-10-04", "orders": 47, "onTimeRate": 97.6},
+        {"date": "2023-10-05", "orders": 51, "onTimeRate": 96.5},
+        {"date": "2023-10-06", "orders": 50, "onTimeRate": 97.2},
+        {"date": "2023-10-07", "orders": 45, "onTimeRate": 98.0},
+        {"date": "2023-10-08", "orders": 46, "onTimeRate": 98.5},
+        {"date": "2023-10-09", "orders": 50, "onTimeRate": 97.9},
+        {"date": "2023-10-10", "orders": 53, "onTimeRate": 97.1},
+        {"date": "2023-10-11", "orders": 51, "onTimeRate": 96.8},
+        {"date": "2023-10-12", "orders": 48, "onTimeRate": 97.3},
+        {"date": "2023-10-13", "orders": 50, "onTimeRate": 97.5},
+        {"date": "2023-10-14", "orders": 44, "onTimeRate": 98.2},
+        {"date": "2023-10-15", "orders": 46, "onTimeRate": 98.4},
+        {"date": "2023-10-16", "orders": 51, "onTimeRate": 97.8},
+        {"date": "2023-10-17", "orders": 53, "onTimeRate": 96.9},
+        {"date": "2023-10-18", "orders": 52, "onTimeRate": 97.2},
+        {"date": "2023-10-19", "orders": 50, "onTimeRate": 97.3},
+        {"date": "2023-10-20", "orders": 49, "onTimeRate": 97.1},
+        {"date": "2023-10-21", "orders": 45, "onTimeRate": 98.3},
+        {"date": "2023-10-22", "orders": 47, "onTimeRate": 98.5},
+        {"date": "2023-10-23", "orders": 52, "onTimeRate": 97.6},
+        {"date": "2023-10-24", "orders": 54, "onTimeRate": 96.8},
+        {"date": "2023-10-25", "orders": 53, "onTimeRate": 97.0},
+        {"date": "2023-10-26", "orders": 51, "onTimeRate": 97.2},
+        {"date": "2023-10-27", "orders": 49, "onTimeRate": 97.5},
+        {"date": "2023-10-28", "orders": 46, "onTimeRate": 98.1}
+      ],
+      "monthly": [
+        {"month": "November 2022", "orders": 1243, "onTimeRate": 93.5},
+        {"month": "December 2022", "orders": 1275, "onTimeRate": 93.8},
+        {"month": "January 2023", "orders": 1210, "onTimeRate": 94.1},
+        {"month": "February 2023", "orders": 1225, "onTimeRate": 94.5},
+        {"month": "March 2023", "orders": 1282, "onTimeRate": 95.0},
+        {"month": "April 2023", "orders": 1310, "onTimeRate": 95.3},
+        {"month": "May 2023", "orders": 1340, "onTimeRate": 95.6},
+        {"month": "June 2023", "orders": 1365, "onTimeRate": 95.9},
+        {"month": "July 2023", "orders": 1385, "onTimeRate": 96.2},
+        {"month": "August 2023", "orders": 1405, "onTimeRate": 96.4},
+        {"month": "September 2023", "orders": 1425, "onTimeRate": 96.6},
+        {"month": "October 2023", "orders": 1445, "onTimeRate": 96.7}
+      ],
+      "statusBreakdown": {
+        "pending": 125,
+        "processing": 210,
+        "shipped": 365,
+        "delivered": 715,
+        "cancelled": 30
+      }
+    },
+    "alerts": [
+      {
+        "id": "ALT001",
+        "type": "warning",
+        "title": "WH15: High pending orders",
+        "description": "Pending orders above threshold (25+). Investigate processing delay.",
+        "dateTime": "2023-10-28 09:15",
+        "priority": "medium",
+        "relatedEntity": "WH15"
+      },
+      {
+        "id": "ALT002",
+        "type": "error",
+        "title": "WH20: Temperature excursion detected",
+        "description": "Zone C temperature exceeded 25°C for 45 minutes. QA notified.",
+        "dateTime": "2023-10-28 07:30",
+        "priority": "high",
+        "relatedEntity": "WH20"
+      },
+      {
+        "id": "ALT003",
+        "type": "success",
+        "title": "New Client Onboarded: MedStone Pharma LLC",
+        "description": "Initial shipments starting next week. Setup complete.",
+        "dateTime": "2023-10-27 16:45",
+        "priority": "low",
+        "relatedEntity": "CL009"
+      },
+      {
+        "id": "ALT004",
+        "type": "warning",
+        "title": "WH10: Low stock critical items",
+        "description": "3 items below reorder point for Eitan Medical Limited. Orders pending.",
+        "dateTime": "2023-10-28 08:20",
+        "priority": "medium",
+        "relatedEntity": "WH10"
+      },
+      {
+        "id": "ALT005",
+        "type": "error",
+        "title": "Shipping delay: Freight carrier issue",
+        "description": "Northeast weather affecting Ground shipments. Notify affected customers.",
+        "dateTime": "2023-10-28 10:05",
+        "priority": "high",
+        "relatedEntity": "Shipping"
+      },
+      {
+        "id": "ALT006",
+        "type": "info",
+        "title": "Monthly inventory audit scheduled",
+        "description": "All warehouses: Cycle count scheduled for October 31st.",
+        "dateTime": "2023-10-28 09:30",
+        "priority": "low",
+        "relatedEntity": "Inventory"
+      },
+      {
+        "id": "ALT007",
+        "type": "success",
+        "title": "WH23: System validation complete",
+        "description": "New cold chain monitoring system validated and operational.",
+        "dateTime": "2023-10-27 14:20",
+        "priority": "medium",
+        "relatedEntity": "WH23"
+      }
+    ]
+  }
